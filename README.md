@@ -1,39 +1,33 @@
 # UART Communication Protocol in VHDL
 
-A UART (Universal Asynchronous Receiver Transmitter) communication system designed in VHDL and implemented using Xilinx Vivado 2023.2. This project demonstrates asynchronous serial communication by transmitting and receiving 8-bit data using separate UART Transmitter and Receiver modules synchronized through a Baud Rate Generator.
+FPGA-Based UART (Universal Asynchronous Receiver Transmitter) Communication Protocol designed using **VHDL** and implemented in **Xilinx Vivado 2023.2** on an **Artix-7 FPGA**. This project demonstrates asynchronous serial communication by transmitting and receiving 8-bit data using dedicated UART Transmitter and Receiver modules synchronized through a Baud Rate Generator.
 
 ---
 
 ## Project Overview
 
-This project implements a complete UART communication system consisting of:
+UART is one of the most widely used serial communication protocols in embedded systems. This project implements a complete UART communication system capable of transmitting parallel data serially and reconstructing the original data at the receiver.
 
-- UART Transmitter (TX)
-- UART Receiver (RX)
-- Baud Rate Generator
-- Top-Level Integration
-- Functional Testbench
-
-The transmitter converts parallel input data into serial format, while the receiver reconstructs the serial data back into parallel form. Communication is synchronized using the generated baud clock.
+The design is completely modular and consists of separate transmitter, receiver, baud generator, and top-level integration modules.
 
 ---
 
 ## Features
 
-- VHDL Implementation
-- UART Transmitter
-- UART Receiver
+- UART Transmitter (TX)
+- UART Receiver (RX)
 - Baud Rate Generator
+- Modular VHDL Design
 - RTL Schematic
 - Functional Simulation
 - Synthesized Design
 - Implemented Design
-- FSM Based Design
-- Modular Architecture
+- Project Hierarchy
+- System Block Diagram
 
 ---
 
-## Tools Used
+## Development Environment
 
 | Tool | Version |
 |------|---------|
@@ -44,10 +38,56 @@ The transmitter converts parallel input data into serial format, while the recei
 
 ---
 
-## Project Structure
+# Project Architecture
+
+## System Block Diagram
+
+![System Block Diagram](UART_Block_Diagram.png)
+
+---
+
+## RTL Schematic
+
+![RTL Schematic](UART_RTL_Schematic.png)
+
+---
+
+## Functional Simulation
+
+The simulation verifies successful UART data transmission and reception.
+
+**Input Data :**
 
 ```
-UART_Protocol_VHDL/
+0xAA
+```
+
+**Received Data :**
+
+```
+0xAA
+```
+
+![Simulation Waveform](UART_Simulation_Waveform.png)
+
+---
+
+## Project Hierarchy
+
+![Project Hierarchy](UART_Project_Hierarchy.png)
+
+---
+
+## Implemented Design
+
+![Implemented Design](UART_Implemented_Design.png)
+
+---
+
+# Project Structure
+
+```
+UART-Protocol-VHDL
 │
 ├── baud_generator.vhd
 ├── uart_tx.vhd
@@ -55,106 +95,80 @@ UART_Protocol_VHDL/
 ├── uart_top.vhd
 ├── uart_tb.vhd
 │
-├── Images/
-│   ├── UART_Simulation_Waveform.png
-│   ├── UART_Project_Hierarchy.png
-│   ├── UART_RTL_Schematic.png
-│   └── UART_Implemented_Design.png
+├── UART_Block_Diagram.png
+├── UART_Project_Hierarchy.png
+├── UART_RTL_Schematic.png
+├── UART_Simulation_Waveform.png
+├── UART_Implemented_Design.png
 │
-├── Diagrams/
-│   ├── UART_Block_Diagram.png
-│   ├── UART_TX_FSM.png
-│   └── UART_RX_FSM.png
-│
+├── LICENSE
 └── README.md
 ```
 
 ---
 
-## System Block Diagram
+# Working Principle
 
-The UART communication system consists of:
-
-- Baud Generator
-- UART Transmitter
-- UART Receiver
-- Serial TX Line
-
----
-
-## Finite State Machines
-
-### UART Transmitter States
-
-- IDLE
-- START_BIT
-- DATA_BITS
-- STOP_BIT
-
-### UART Receiver States
-
-- IDLE
-- DATA_BITS
-- STOP_BIT
+1. Parallel input data is applied to the UART Transmitter.
+2. The Baud Generator generates the baud tick required for serial communication.
+3. The Transmitter converts parallel data into serial bits.
+4. Serial data is transferred through the TX line.
+5. The UART Receiver receives the serial bits.
+6. The received serial data is converted back into parallel data.
+7. The received data is available at the output with the receive completion signal.
 
 ---
 
-## Simulation Result
+# Simulation Results
 
-Simulation verifies successful UART data transmission and reception.
+The simulation confirms:
 
-Example:
-
-Input Data:
-
-```
-0xAA
-```
-
-Received Data:
-
-```
-0xAA
-```
-
-The simulation waveform confirms correct UART operation with successful data recovery at the receiver.
+- Successful UART data transmission
+- Successful UART data reception
+- Correct reconstruction of transmitted data
+- Proper operation of UART Receiver
+- Correct timing using Baud Generator
 
 ---
 
-## Project Outputs
-
-- Functional Simulation
-- RTL Schematic
-- Implemented Design
-- Waveform Verification
-- FSM Design
-- Block Diagram
-
----
-
-## Applications
+# Applications
 
 - FPGA-Based Embedded Systems
-- Serial Communication Interfaces
+- UART Communication Interfaces
 - Microcontroller Communication
 - Industrial Automation
 - IoT Devices
-- Communication Protocol Learning
+- Robotics
+- Digital Communication Systems
+- Educational FPGA Projects
 
 ---
 
-## Future Improvements
+# Future Enhancements
 
 - Configurable Baud Rate
 - Parity Bit Support
-- Variable Data Length
+- Multiple Stop Bits
 - FIFO Buffer
 - Interrupt Support
-- Hardware Validation on FPGA Board
+- Hardware Testing on Physical FPGA Board
 
 ---
 
-## Author
+# Repository Contents
+
+- Complete VHDL Source Code
+- Testbench
+- RTL Schematic
+- Functional Simulation
+- Implemented Design
+- Project Hierarchy
+- Block Diagram
+- Documentation
+
+---
+
+# Author
 
 **Sanika Shriram Patil**
 
@@ -164,6 +178,10 @@ Maharashtra Institute of Technology, Chhatrapati Sambhajinagar
 
 ---
 
-## License
+# License
 
-This project is developed for educational and learning purposes.
+This project is licensed under the **MIT License**.
+
+---
+
+## If you found this project helpful, consider giving it a ⭐ on GitHub.
