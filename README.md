@@ -1,86 +1,31 @@
 # UART Communication Protocol in VHDL
 
-FPGA-Based UART (Universal Asynchronous Receiver Transmitter) Communication Protocol designed using **VHDL** and implemented in **Xilinx Vivado 2023.2** on an **Artix-7 FPGA**. This project demonstrates asynchronous serial communication by transmitting and receiving 8-bit data using dedicated UART Transmitter and Receiver modules synchronized through a Baud Rate Generator.
+A UART (Universal Asynchronous Receiver Transmitter) communication system designed using **VHDL** and implemented in **Vivado 2023.2** for the **Artix-7 FPGA**. This project demonstrates complete UART data transmission and reception with a dedicated baud rate generator and verifies successful communication through behavioral simulation.
 
 ---
 
-## Project Overview
-
-UART is one of the most widely used serial communication protocols in embedded systems. This project implements a complete UART communication system capable of transmitting parallel data serially and reconstructing the original data at the receiver.
-
-The design is completely modular and consists of separate transmitter, receiver, baud generator, and top-level integration modules.
-
----
-
-## Features
+# Project Features
 
 - UART Transmitter (TX)
 - UART Receiver (RX)
 - Baud Rate Generator
-- Modular VHDL Design
-- RTL Schematic
+- UART Top Module
+- Behavioral Testbench
 - Functional Simulation
-- Synthesized Design
+- RTL Schematic
 - Implemented Design
 - Project Hierarchy
-- System Block Diagram
 
 ---
 
-## Development Environment
+# Development Environment
 
 | Tool | Version |
-|------|---------|
-| Xilinx Vivado | 2023.2 |
+|------|----------|
+| Vivado | 2023.2 |
 | Language | VHDL |
 | FPGA Family | Artix-7 |
-| Device | xc7a35tcpg236-1 |
-
----
-
-# Project Architecture
-
-## System Block Diagram
-
-![System Block Diagram](UART_Block_Diagram.png)
-
----
-
-## RTL Schematic
-
-![RTL Schematic](UART_RTL_Schematic.png)
-
----
-
-## Functional Simulation
-
-The simulation verifies successful UART data transmission and reception.
-
-**Input Data :**
-
-```
-0xAA
-```
-
-**Received Data :**
-
-```
-0xAA
-```
-
-![Simulation Waveform](UART_Simulation_Waveform.png)
-
----
-
-## Project Hierarchy
-
-![Project Hierarchy](UART_Project_Hierarchy.png)
-
----
-
-## Implemented Design
-
-![Implemented Design](UART_Implemented_Design.png)
+| Device | XC7A35T |
 
 ---
 
@@ -95,76 +40,103 @@ UART-Protocol-VHDL
 ├── uart_top.vhd
 ├── uart_tb.vhd
 │
-├── UART_Block_Diagram.png
-├── UART_Project_Hierarchy.png
+├── UART_PROJECT_BLOCK_DIAGRAM.jpg
 ├── UART_RTL_Schematic.png
-├── UART_Simulation_Waveform.png
+├── Simulation_Waveform.png
+├── UART_Project_Hierarchy.png
 ├── UART_Implemented_Design.png
 │
-├── LICENSE
 └── README.md
 ```
 
 ---
 
-# Working Principle
+# System Block Diagram
 
-1. Parallel input data is applied to the UART Transmitter.
-2. The Baud Generator generates the baud tick required for serial communication.
-3. The Transmitter converts parallel data into serial bits.
-4. Serial data is transferred through the TX line.
-5. The UART Receiver receives the serial bits.
-6. The received serial data is converted back into parallel data.
-7. The received data is available at the output with the receive completion signal.
+![System Block Diagram](UART_PROJECT_BLOCK_DIAGRAM.jpg)
 
 ---
 
-# Simulation Results
+# RTL Schematic
 
-The simulation confirms:
+![RTL Schematic](UART_RTL_Schematic.png)
 
-- Successful UART data transmission
-- Successful UART data reception
-- Correct reconstruction of transmitted data
-- Proper operation of UART Receiver
-- Correct timing using Baud Generator
+---
+
+# Functional Simulation
+
+The UART transmitter successfully sends **0xAA**, and the receiver correctly reconstructs the same data.
+
+**Input Data**
+
+```
+0xAA
+```
+
+**Received Data**
+
+```
+0xAA
+```
+
+![Simulation Waveform](Simulation_Waveform.png)
+
+---
+
+# Project Hierarchy
+
+![Project Hierarchy](UART_Project_Hierarchy.png)
+
+---
+
+# Implemented Design
+
+![Implemented Design](UART_Implemented_Design.png)
+
+---
+
+# Working Principle
+
+1. The Baud Generator generates the baud tick.
+2. UART Transmitter serializes the 8-bit parallel input data.
+3. Serial data is transmitted through the TX line.
+4. UART Receiver samples incoming serial bits.
+5. Received serial data is converted back into parallel form.
+6. The receiver asserts `rx_done` after successful reception.
+
+---
+
+# Simulation Result
+
+| Parameter | Value |
+|-----------|-------|
+| Input Data | 0xAA |
+| Received Data | 0xAA |
+| Transmission | Successful |
+| Reception | Successful |
+| Verification | Passed |
 
 ---
 
 # Applications
 
 - FPGA-Based Embedded Systems
-- UART Communication Interfaces
-- Microcontroller Communication
+- Serial Communication
+- Microcontroller Interfaces
 - Industrial Automation
 - IoT Devices
-- Robotics
 - Digital Communication Systems
-- Educational FPGA Projects
 
 ---
 
-# Future Enhancements
+# Future Improvements
 
 - Configurable Baud Rate
 - Parity Bit Support
 - Multiple Stop Bits
 - FIFO Buffer
 - Interrupt Support
-- Hardware Testing on Physical FPGA Board
-
----
-
-# Repository Contents
-
-- Complete VHDL Source Code
-- Testbench
-- RTL Schematic
-- Functional Simulation
-- Implemented Design
-- Project Hierarchy
-- Block Diagram
-- Documentation
+- FPGA Hardware Validation
 
 ---
 
@@ -174,14 +146,8 @@ The simulation confirms:
 
 Electronics and Computer Engineering
 
-Maharashtra Institute of Technology, Chhatrapati Sambhajinagar
-
 ---
 
 # License
 
-This project is licensed under the **MIT License**.
-
----
-
-## If you found this project helpful, consider giving it a ⭐ on GitHub.
+This project is licensed under the MIT License.
